@@ -30,6 +30,10 @@ REG_OUTPUT = 0x01
 REG_POLARITY = 0x02
 REG_CONFIG = 0x03
 
+REDS = [0] * ledshim.NUM_PIXELS * 2
+SCAN = [1, 2, 4, 8, 16, 32, 64, 128, 255]
+REDS[ledshim.NUM_PIXELS - len(SCAN):ledshim.NUM_PIXELS + len(SCAN)] = SCAN + SCAN[::-1]
+
 NUM_BUTTONS = 5
 
 BUTTON_A = 0
