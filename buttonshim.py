@@ -421,8 +421,10 @@ def set_pixel(r, g, b):
 
 def blink(r, g, b, ontime, offtime, blinktimes):
     logging.info("[buttonshim] Blink")
+    delta = (time.time() - start_time) * ledshim.NUM_PIXELS * 1
+    offset = int(abs((delta % len(REDS)) - ledshim.NUM_PIXELS))
     for i in range(0, blinktimes):
-        set_pixel(r, g, b)
+        set_pixel(i, 0, REDS[offset + i], 0)
         time.sleep(ontime)
         set_pixel(0, 0, 0)
         time.sleep(offtime)
